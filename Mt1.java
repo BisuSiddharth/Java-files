@@ -32,18 +32,42 @@ public class Mt1{
         return arr;
     }
 
+    int[][] getMans(int[][] arr1, int[][] arr2){
+        int x = arr1.length;
+        int y1 = arr1[0].length;
+        int y2 = arr2.length;
+        int z = arr2[0].length;
+
+        if(y1 != y2) return null;
+
+        int v[][] = new int[x][z];
+        for(int i = 0; i < x; i++){
+            for(int j = 0; j < z; j++){
+                v[i][j] = 0;
+
+                for(int k = 0; k < y1; k++){
+                    v[i][j] += arr1[i][k] * arr2[k][j]; 
+                }
+            }
+        }
+        return v;
+    }
+
     public static void main(String[] args){
         // int[][] arr = {{1, 2}, {3, 4}};
 
         Mt1 obj = new Mt1();
         // obj.display(arr);
 
-        int[][] arr1 = obj.getArray(2, 3);
+        int[][] arr1 = obj.getArray(3, 3);
 
-        int[][] arr2 = obj.getArray(3,1);
+        int[][] arr2 = obj.getArray(3,3);
 
         obj.display(arr1); 
         obj.display(arr2); 
+
+        int[][] ans = obj.getMans(arr1, arr2);
+        obj.display(ans);
     }
 }
 
